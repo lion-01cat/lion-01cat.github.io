@@ -1,37 +1,52 @@
-name: LION Auto Deploy
+name: Deploy Hexo to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main  # <--- 注意：如果你的主分支叫 master，请改成 master
+
+# 授予 GitHub Actions 自动部署的所需权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 确保并发部署不会发生冲突
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '22'  # 使用最新的 Node 版本，告别之前的警告！
+          cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install dependencies
+        run: npm install  # <--- 这一步就是用来下载 fluid 主题的！
 
+      - name: Build Hexo
+        run: npx hexo generate
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
-        env:
-          # 这里引用你设置好的 Secret 名
-          GH_TOKEN: ${{ secrets.HEXO_DEPLOY_TOKEN }}
-        run: |
-          git config --global user.name "lion-01cat"
-          git config --global user.email "ba20240121@gmail.com"
-          # 核心逻辑：生成静态文件并推送到 gh-pages 分支
-          npx hexo clean
-          npx hexo generate
-          cd public
-          git init
-          git add .
-          git commit -m "LION: Render from Nothing"
-          # 使用 Token 强制推送到仓库的 gh-pages 分支
-          git push --force https://${GH_TOKEN}@://github.com master:gh-pages
+        id: deployment
+        uses: actions/deploy-pages@v4
