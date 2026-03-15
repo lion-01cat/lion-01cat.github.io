@@ -1,0 +1,45 @@
+/* 1. 整体视觉：去除硬线条和生硬阴影 */
+body {
+    background-color: #fcfcfc !important; /* 非常淡的灰白色，比纯白更柔和 */
+    color: #4a4a4a !important; /* 不用纯黑，用温和的炭灰 */
+    line-height: 1.8 !important; /* 增加行高，优雅的关键 */
+}
+
+/* 2. 圆润的卡片效果 */
+.card {
+    border-radius: 20px !important; /* 大圆角，可爱又优雅 */
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; /* 极轻的阴影 */
+    margin-bottom: 2rem !important;
+}
+
+/* 3. 标题排版：去掉复杂的装饰 */
+h1, h2, h3 {
+    font-weight: 600 !important;
+    color: #333 !important;
+    border-left: none !important; /* 去掉原版凌乱的侧边条 */
+    margin-top: 2rem !important;
+}
+
+/* 4. 图片圆角：让图片像浮在纸面上 */
+img {
+    border-radius: 12px !important;
+    transition: transform 0.3s ease;
+}
+
+/* 5. 链接颜色：用一种高级的“莫兰迪色系”或“淡雅色” */
+a {
+    color: #8e9eab !important; /* 优雅的灰蓝色，比深蓝可爱，比亮粉高级 */
+    text-decoration: none !important;
+    border-bottom: 1px solid #dcdcdc !important;
+}
+a:hover {
+    color: #6c7a89 !important;
+    border-bottom: 1px solid #6c7a89 !important;
+}
+
+/* 6. 去除多余的页脚小图标装饰 */
+.footer-item {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
