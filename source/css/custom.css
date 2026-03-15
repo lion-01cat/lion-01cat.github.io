@@ -1,45 +1,57 @@
-/* 1. 整体视觉：去除硬线条和生硬阴影 */
+/* --- 彻底重构大动脉 --- */
+
+/* 强制背景，告别默认的灰蒙蒙 */
 body {
-    background-color: #fcfcfc !important; /* 非常淡的灰白色，比纯白更柔和 */
-    color: #4a4a4a !important; /* 不用纯黑，用温和的炭灰 */
-    line-height: 1.8 !important; /* 增加行高，优雅的关键 */
+    background-color: #fdfdfd !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
-/* 2. 圆润的卡片效果 */
-.card {
-    border-radius: 20px !important; /* 大圆角，可爱又优雅 */
+/* 隐藏 Fluid 原生的“凌乱”线条和阴影 */
+.card, .post-content, .markdown-body {
     border: none !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; /* 极轻的阴影 */
-    margin-bottom: 2rem !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
-/* 3. 标题排版：去掉复杂的装饰 */
+/* 核心容器：限制最大宽度，提升阅读感 */
+.container {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    padding: 40px 20px !important;
+}
+
+/* 标题：极简风格 */
 h1, h2, h3 {
-    font-weight: 600 !important;
-    color: #333 !important;
-    border-left: none !important; /* 去掉原版凌乱的侧边条 */
-    margin-top: 2rem !important;
+    border: none !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #eee !important; /* 只保留底部极细的一条线 */
+    margin-bottom: 1.5rem !important;
 }
 
-/* 4. 图片圆角：让图片像浮在纸面上 */
-img {
-    border-radius: 12px !important;
-    transition: transform 0.3s ease;
-}
-
-/* 5. 链接颜色：用一种高级的“莫兰迪色系”或“淡雅色” */
+/* 链接：优雅的下划线动画 */
 a {
-    color: #8e9eab !important; /* 优雅的灰蓝色，比深蓝可爱，比亮粉高级 */
+    color: #555 !important;
     text-decoration: none !important;
-    border-bottom: 1px solid #dcdcdc !important;
-}
-a:hover {
-    color: #6c7a89 !important;
-    border-bottom: 1px solid #6c7a89 !important;
+    border-bottom: 2px solid #ccc !important;
+    transition: all 0.3s ease !important;
 }
 
-/* 6. 去除多余的页脚小图标装饰 */
-.footer-item {
-    font-size: 0.9rem;
-    opacity: 0.7;
+a:hover {
+    color: #000 !important;
+    border-bottom: 2px solid #000 !important;
+}
+
+/* 隐藏侧边栏或者顶部的花哨菜单背景 */
+.navbar {
+    background: rgba(255,255,255,0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+}
+
+/* 如果你想去掉那个巨大的 Banner 图（显得很笨重） */
+#board {
+    margin-top: 0 !important;
+}
+.banner {
+    display: none !important; /* 彻底关闭 Banner，直接显示正文 */
 }
