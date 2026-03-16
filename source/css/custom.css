@@ -1,9 +1,65 @@
-/* --- 测试基础代码 --- */
+/* --- 优雅可爱风·重构方案 V1.0 --- */
+
+/* 1. 全局基调：告别纯白，拥抱温柔米白 */
 body {
-    background-color: #f0f0f0 !important; /* 设为浅灰色，这样如果页面是白色就说明没改对 */
+  background-color: #f8f8f0 !important; /* 温柔的米白/燕麦色，比纯白更护眼、优雅 */
+  color: #3d3d3d !important; /* 深灰色文字，比纯黑更柔和 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  line-height: 1.8; /* 增加行距，提升阅读舒适感，这是优雅的核心 */
 }
 
-h1 {
-    color: red !important; /* 如果你的标题变成红色，说明你的 CSS 路径完全通了！ */
-    font-size: 50px !important;
+/* 2. 卡片与容器：告别方块，拥抱圆润 */
+.card {
+  border-radius: 20px !important; /* 大圆角是可爱的灵魂 */
+  border: none !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04) !important; /* 非常非常淡的阴影，制造悬浮感 */
+  background-color: #ffffff !important; /* 卡片用纯白，与米白背景形成层次感 */
+  overflow: hidden; /* 防止内部元素溢出圆角 */
+  margin-bottom: 2.5rem !important;
+}
+
+/* 3. 标题排版：干净、清晰 */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600 !important;
+  border: none !important; /* 去掉 Fluid 自带的所有烦人装饰线 */
+  color: #2c2c2c !important;
+}
+
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.8rem; margin-top: 3rem; }
+
+/* 4. 链接样式：低调且迷人 */
+a {
+  color: #6a8899 !important; /* 优雅的灰蓝色 */
+  text-decoration: none !important;
+  border-bottom: 2px solid rgba(106, 136, 153, 0.2) !important; /* 用半透明的下划线 */
+  padding-bottom: 1px;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  border-bottom-color: rgba(106, 136, 153, 0.8) !important; /* 悬停时下划线变实 */
+  background-color: rgba(106, 136, 153, 0.05) !important; /* 增加淡淡的背景色 */
+}
+
+/* 5. 简化顶部导航栏和页脚 */
+#navbar {
+  background-color: rgba(248, 248, 240, 0.85) !important; /* 与背景色呼应的半透明导航栏 */
+  backdrop-filter: blur(10px) !important; /* iOS 风格的毛玻璃效果 */
+  box-shadow: none !important;
+  border-bottom: 1px solid #e5e5d5 !important;
+}
+
+#footer {
+  color: #aaa !important; /* 页脚文字颜色变淡 */
+}
+
+/* 6. 图片和代码块也要圆润可爱 */
+img {
+  border-radius: 12px !important; /* 图片也用圆角 */
+}
+
+pre, code {
+  border-radius: 8px !important;
+  font-family: 'Courier New', Courier, monospace !important;
 }
