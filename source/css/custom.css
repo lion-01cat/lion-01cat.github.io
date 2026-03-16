@@ -1,65 +1,121 @@
-/* --- 优雅可爱风·重构方案 V1.0 --- */
+/* --- 梦幻可爱风·重构方案 V2.0 (加强版) --- */
 
-/* 1. 全局基调：告别纯白，拥抱温柔米白 */
+/* 1. 全局与字体设定：奠定温柔基调 */
+/* 建议：去 _config.fluid.yml 的 inject.head 里加入 Google Font 链接，效果翻倍！ */
+/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&display=swap"> */
+:root {
+  --cute-pink: #f8c8dc; /* 一个温柔不刺眼的粉色 */
+  --soft-blue: #a4d8f0; /* 柔和的蓝色 */
+  --bg-color: #fdf6f8; /* 带一点粉调的背景，非常梦幻 */
+  --card-bg: #ffffff; /* 卡片背景 */
+  --text-color: #5b5b5b; /* 主要文字颜色 */
+  --title-color: #3e3e3e; /* 标题颜色 */
+}
+
 body {
-  background-color: #f8f8f0 !important; /* 温柔的米白/燕麦色，比纯白更护眼、优雅 */
-  color: #3d3d3d !important; /* 深灰色文字，比纯黑更柔和 */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  line-height: 1.8; /* 增加行距，提升阅读舒适感，这是优雅的核心 */
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-weight: 400;
+  line-height: 1.9 !important; /* 更大的行距，更放松 */
+  transition: background-color 0.5s;
 }
 
-/* 2. 卡片与容器：告别方块，拥抱圆润 */
+/* 2. 布局核心：创造呼吸感 */
+.container {
+  max-width: 820px !important;
+}
+
+/* 3. 卡片·彻底重塑：告别呆板 */
 .card {
-  border-radius: 20px !important; /* 大圆角是可爱的灵魂 */
-  border: none !important;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04) !important; /* 非常非常淡的阴影，制造悬浮感 */
-  background-color: #ffffff !important; /* 卡片用纯白，与米白背景形成层次感 */
-  overflow: hidden; /* 防止内部元素溢出圆角 */
-  margin-bottom: 2.5rem !important;
+  border-radius: 24px !important;
+  border: 1px solid #f0e0e6 !important;
+  box-shadow: 0 4px 12px rgba(230, 180, 200, 0.1), 0 10px 30px rgba(220, 170, 190, 0.08) !important;
+  background-color: var(--card-bg) !important;
+  padding: 2rem !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(230, 180, 200, 0.15), 0 15px 40px rgba(220, 170, 190, 0.12) !important;
 }
 
-/* 3. 标题排版：干净、清晰 */
+/* 4. 标题与文字：杂志感排版 */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600 !important;
-  border: none !important; /* 去掉 Fluid 自带的所有烦人装饰线 */
-  color: #2c2c2c !important;
+  font-weight: 500 !important;
+  border: none !important;
+  color: var(--title-color) !important;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--cute-pink) !important;
+  display: inline-block; /* 让下划线长度随文字变化 */
 }
 
-h1 { font-size: 2.2rem; }
-h2 { font-size: 1.8rem; margin-top: 3rem; }
-
-/* 4. 链接样式：低调且迷人 */
+/* 5. 交互元素·注入灵魂：链接、按钮 */
 a {
-  color: #6a8899 !important; /* 优雅的灰蓝色 */
+  color: var(--soft-blue) !important;
   text-decoration: none !important;
-  border-bottom: 2px solid rgba(106, 136, 153, 0.2) !important; /* 用半透明的下划线 */
-  padding-bottom: 1px;
+  border-bottom: 2px solid rgba(164, 216, 240, 0.3) !important;
+  transition: all 0.3s ease;
+  padding: 0 2px;
+}
+a:hover {
+  background-color: rgba(164, 216, 240, 0.15) !important;
+  border-bottom-color: var(--soft-blue) !important;
+}
+
+.btn {
+  border-radius: 999px !important; /* 可爱的胶囊按钮 */
+  background-color: var(--cute-pink) !important;
+  color: white !important;
+  box-shadow: 0 2px 5px rgba(248, 200, 220, 0.5) !important;
   transition: all 0.3s ease;
 }
-
-a:hover {
-  border-bottom-color: rgba(106, 136, 153, 0.8) !important; /* 悬停时下划线变实 */
-  background-color: rgba(106, 136, 153, 0.05) !important; /* 增加淡淡的背景色 */
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(248, 200, 220, 0.8) !important;
 }
 
-/* 5. 简化顶部导航栏和页脚 */
-#navbar {
-  background-color: rgba(248, 248, 240, 0.85) !important; /* 与背景色呼应的半透明导航栏 */
-  backdrop-filter: blur(10px) !important; /* iOS 风格的毛玻璃效果 */
-  box-shadow: none !important;
-  border-bottom: 1px solid #e5e5d5 !important;
-}
-
-#footer {
-  color: #aaa !important; /* 页脚文字颜色变淡 */
-}
-
-/* 6. 图片和代码块也要圆润可爱 */
-img {
-  border-radius: 12px !important; /* 图片也用圆角 */
+/* 6. 细节·魔鬼之处：引用、代码块 */
+blockquote {
+  border-left: 4px solid var(--cute-pink) !important;
+  background-color: rgba(248, 200, 220, 0.1) !important;
+  padding: 1rem 1.5rem !important;
+  border-radius: 0 16px 16px 0 !important;
+  color: #777;
 }
 
 pre, code {
-  border-radius: 8px !important;
-  font-family: 'Courier New', Courier, monospace !important;
+  background-color: #fef9fb !important;
+  border: 1px solid #f0e0e6 !important;
+  border-radius: 12px !important;
+}
+
+/* 7. 导航栏与页脚·轻盈化 */
+#navbar {
+  background-color: rgba(253, 246, 248, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  border: none !important;
+}
+
+#footer {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* 8. 动画·让页面活起来 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* 彻底隐藏那个大 Banner 图 */
+#board, .banner {
+  display: none !important;
+}
+#content-inner {
+  padding-top: 80px !important; /* 因为 banner 没了，给内容一点顶部空间 */
 }
