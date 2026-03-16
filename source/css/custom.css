@@ -1,57 +1,9 @@
-/* --- 彻底重构大动脉 --- */
-
-/* 强制背景，告别默认的灰蒙蒙 */
+/* --- 测试基础代码 --- */
 body {
-    background-color: #fdfdfd !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    background-color: #f0f0f0 !important; /* 设为浅灰色，这样如果页面是白色就说明没改对 */
 }
 
-/* 隐藏 Fluid 原生的“凌乱”线条和阴影 */
-.card, .post-content, .markdown-body {
-    border: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-}
-
-/* 核心容器：限制最大宽度，提升阅读感 */
-.container {
-    max-width: 800px !important;
-    margin: 0 auto !important;
-    padding: 40px 20px !important;
-}
-
-/* 标题：极简风格 */
-h1, h2, h3 {
-    border: none !important;
-    padding-bottom: 10px !important;
-    border-bottom: 1px solid #eee !important; /* 只保留底部极细的一条线 */
-    margin-bottom: 1.5rem !important;
-}
-
-/* 链接：优雅的下划线动画 */
-a {
-    color: #555 !important;
-    text-decoration: none !important;
-    border-bottom: 2px solid #ccc !important;
-    transition: all 0.3s ease !important;
-}
-
-a:hover {
-    color: #000 !important;
-    border-bottom: 2px solid #000 !important;
-}
-
-/* 隐藏侧边栏或者顶部的花哨菜单背景 */
-.navbar {
-    background: rgba(255,255,255,0.8) !important;
-    backdrop-filter: blur(10px) !important;
-    border-bottom: 1px solid #f0f0f0 !important;
-}
-
-/* 如果你想去掉那个巨大的 Banner 图（显得很笨重） */
-#board {
-    margin-top: 0 !important;
-}
-.banner {
-    display: none !important; /* 彻底关闭 Banner，直接显示正文 */
+h1 {
+    color: red !important; /* 如果你的标题变成红色，说明你的 CSS 路径完全通了！ */
+    font-size: 50px !important;
 }
