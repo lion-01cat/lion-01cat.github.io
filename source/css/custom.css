@@ -1,83 +1,47 @@
-/* --- 艺术馆风格·重构方案 V3.0 (安全&优雅) --- */
+/* --- 单栏阅读者风格·重构方案 V4.0 (解构版) --- */
 
-/* 1. :root 全局颜色变量 (以后想换色，只改这里就行！) */
+/* 1. :root 全局颜色与字体变量 (你的风格控制中心) */
 :root {
-  --bg-color: #f5f3ef;      /* 柔和的燕麦白/画布背景色 */
-  --card-bg: #ffffff;      /* 卡片背景，纯白 */
-  --text-color: #4a4a4a;   /* 主要文字颜色，深炭灰，比纯黑柔和 */
-  --title-color: #2c2c2c;  /* 标题颜色，更深一点的炭灰 */
-  --accent-color: #d19a66;  /* 点缀色：温暖的琥珀色/焦糖色，用于链接和装饰 */
-  --border-color: #e8e3d9;  /* 边框颜色，非常淡 */
+  --bg-color: #f4f4f4;      /* 更中性的浅灰色背景 */
+  --paper-bg: #ffffff;     /* 内容区域的“纸张”背景 */
+  --text-color: #333333;   /* 主要文字颜色 */
+  --title-color: #1a1a1a;  /* 标题颜色，更醒目 */
+  --accent-color: #005b96;  /* 点缀色：沉静的深蓝色，取代之前的琥珀色 */
+  --border-color: #eaeaea;  /* 边框颜色 */
+  --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* 2. 基础设定 (保证内容永远可见) */
+/* 2. 基础设定 */
 body {
   background-color: var(--bg-color) !important;
   color: var(--text-color) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  line-height: 1.85 !important;
-  font-size: 16px;
+  font-family: var(--font-main);
+  line-height: 1.8 !important;
+  font-size: 17px !important; /* 增大默认字号，提升阅读体验 */
 }
 
-/* 3. 安全地处理首页大图 (不隐藏，而是让它变小变简洁) */
-#board {
-  min-height: 25vh !important; /* 让 Banner 高度变矮，像一个简洁的横幅 */
-  margin-top: 0 !important;
-}
-.banner-title {
-  font-size: 2.5rem !important; /* 缩小标题字号 */
-}
+/* --- 【核心】结构手术区 --- */
 
-/* 4. 卡片样式 (质感核心) */
+/* 3. 解构 Fluid 卡片，重塑主内容区为“一张白纸” */
+#main {
+  max-width: 800px !important;     /* 限制阅读宽度，这是单栏阅读的核心 */
+  margin: 4rem auto !important;   /* 上下留白，左右居中 */
+  padding: 4rem !important;       /* “纸张”的内边距 */
+  background-color: var(--paper-bg) !important;
+  border-radius: 8px !important;  /* 给“纸张”一个极其微小的圆角 */
+  box-shadow: 0 4px 25px rgba(0,0,0,0.05) !important; /* 添加非常淡的阴影，制造悬浮感 */
+}
+/* 将原始卡片的样式全部清空，让它“消失”在我们的新布局里 */
 .card {
-  background-color: var(--card-bg) !important;
-  border-radius: 12px !important; /* 优雅的小圆角 */
-  border: 1px solid var(--border-color) !important;
-  box-shadow: none !important; /* 去掉所有阴影，追求纸张的质感 */
-  padding: 2.5rem !important;
-  margin-bottom: 2rem !important;
-  transition: border-color 0.3s ease;
-}
-.card:hover {
-  border-color: var(--accent-color) !important; /* 鼠标悬停时边框变色 */
-}
-
-/* 5. 标题排版 (清晰的层次) */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--title-color) !important;
+  background: transparent !important;
   border: none !important;
-  font-weight: 600 !important;
-}
-h2 {
-  margin-top: 3rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--border-color) !important;
-}
-
-/* 6. 链接样式 (琥珀色点缀) */
-a {
-  color: var(--accent-color) !important;
-  text-decoration: none !important;
-  border-bottom: 1px solid rgba(209, 154, 102, 0.4) !important; /* 半透明下划线 */
-  transition: all 0.2s ease;
-}
-a:hover {
-  background-color: rgba(209, 154, 102, 0.1) !important;
-  border-bottom-color: var(--accent-color) !important;
-}
-
-/* 7. 顶部导航栏 (悬浮感) */
-#navbar {
-  background-color: rgba(245, 243, 239, 0.8) !important; /* 与背景呼应的半透明 */
-  backdrop-filter: blur(10px) !important;
-  border-bottom: 1px solid var(--border-color) !important;
   box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
 }
 
-/* 8. 引用和代码块 */
-blockquote {
-  border-left: 3px solid var(--accent-color) !important;
-  background-color: rgba(245, 243, 239, 0.7) !important;
-  padding: 1rem 1.5rem !important;
-  margin-left: 0;
-  border-radius: 0 8px 8
+/* 4. 【重要】组件隐藏区 (Nuke Zone) */
+/* 彻底隐藏你提到的 CC 协议 和其他所有不想要的页脚/文末元素 */
+#post-nav,                 /* 上一篇/下一篇文章导航 */
+.post-copyright,
